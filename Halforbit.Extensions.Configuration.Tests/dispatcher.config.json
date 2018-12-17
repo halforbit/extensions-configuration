@@ -1,0 +1,44 @@
+{
+    "dispatcher": {
+        "jobs": [
+            {
+                "name": "BuildFeed",
+                "estAvgHandleTime": "00:02:00",
+                "queues": [
+                    {
+                        "name": "BuildFeedCritical",
+                        "targetTimeToAnswer": "00:10:00"
+                    },
+                    {
+                        "name": "BuildFeedImportant",
+                        "targetTimeToAnswer": "1:00:00"
+                    },
+                    {
+                        "name": "BuildFeed",
+                        "targetTimeToAnswer": "12:00:00"
+                    }
+                ]
+            },
+            {
+                "name": "SmokeBuildFeed",
+                "estAvgHandleTime": "00:02:00",
+                "queues": [
+                    {
+                        "name": "SmokeBuildFeed",
+                        "targetTimeToAnswer": "00:01:00"
+                    }
+                ]
+            },
+            {
+                "name": "SmokeVerifyBuild",
+                "estAvgHandleTime": "00:01:00",
+                "queues": [
+                    {
+                        "name": "SmokeBuildFeed",
+                        "targetTimeToAnswer": "04:00:00"
+                    }
+                ]
+            }
+        ]
+    }
+}
