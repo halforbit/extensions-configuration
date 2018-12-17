@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>http://github.com/halforbit/extensions-configuration</RepositoryUrl>
+    <PackageProjectUrl>http://github.com/halforbit/extensions-configuration</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
