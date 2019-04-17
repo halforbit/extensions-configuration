@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
-using System.Reflection;
 
 namespace Microsoft.Extensions.Configuration
 {
@@ -9,15 +8,16 @@ namespace Microsoft.Extensions.Configuration
     {
         public static object ToObject(this IConfigurationSection configuration, Type configType)
         {
-            return MethodBase.GetCurrentMethod().DeclaringType
-                .GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Single(m => m.Name == nameof(ToObject) && m.IsGenericMethod)
-                .MakeGenericMethod(configType)
-                .Invoke(null, new[] { configuration });
+            return ParseConfiguration(configuration).ToObject(configType);
         }
 
         public static TConfig ToObject<TConfig>(
             this IConfigurationSection configuration)
+        {
+            return ParseConfiguration(configuration).ToObject<TConfig>();
+        }
+
+        static JObject ParseConfiguration(IConfigurationSection configuration)
         {
             var root = new JObject();
 
@@ -100,7 +100,7 @@ namespace Microsoft.Extensions.Configuration
                 }
             }
 
-            return root.ToObject<TConfig>();
+            return root;
         }
     }
 }
